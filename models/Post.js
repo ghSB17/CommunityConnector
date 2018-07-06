@@ -19,11 +19,13 @@ const PostSchema = new Schema({
   },
   likes: [
     {
-      user: Schema.Types.ObjectId,
-      ref: "users"
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+      }
     }
   ],
-  Comments: [
+  comments: [
     {
       user: {
         type: Schema.Types.ObjectId,
@@ -39,16 +41,16 @@ const PostSchema = new Schema({
       avatar: {
         type: String
       },
-      date:{
-          type:Date,
-          default:Date.now
+      date: {
+        type: Date,
+        default: Date.now
       }
     }
   ],
-  date:{
-      type:Date,
-      default:Date.now
+  date: {
+    type: Date,
+    default: Date.now
   }
 });
 
-module.exports=Post=mongoose.model('post', PostSchema)
+module.exports = Post = mongoose.model("post", PostSchema);
