@@ -1,4 +1,5 @@
-module.exports = {
-    MONGODB_URI:'mongodb://sg2018cc:sg2018cc@ds125851.mlab.com:25851/communityconnector',
-    secretOrKey:'secret'
+if (process.env.NODE_ENV === "prod") {
+  module.exports = require("./keys_prod");
+} else {
+  module.exports = require("./keys_dev");
 }

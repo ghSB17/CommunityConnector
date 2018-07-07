@@ -32,7 +32,7 @@ if (localStorage.jwtToken) {
   const currentTime = Date.now()/1000
   if(decoded.exp<currentTime){
     store.dispatch(logoutUser())
-    window.location.href="/login"
+    window.location.href="/"
   }
 }
 class App extends Component {
