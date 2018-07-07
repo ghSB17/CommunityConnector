@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import classnames from 'classnames'
+import classnames from "classnames";
+// import {withRouter} from 'react-router-dom'
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { loginUser } from "./../../actions/authActions";
 
 class Login extends Component {
   state = {
@@ -7,6 +11,24 @@ class Login extends Component {
     password: "",
     errors: {}
   };
+
+  componentDidMount() {
+    if(this.props.auth.isAuthenticated){
+      this.props.history.push("/posts")
+    }
+  }
+
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/posts");
+    }
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
+  };
+
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -19,10 +41,10 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password
     };
-    console.log(loginData);
+    this.props.loginUser(loginData);
   };
   render() {
-      const {errors} = this.state
+    const { errors } = this.state;
     return (
       <div className="login">
         <div className="container">
@@ -32,6 +54,9 @@ class Login extends Component {
               <p className="lead text-center">
                 Sign in to your Community Connector account
               </p>
+              <small className="form-text text-muted">
+                    (* = required)
+                  </small>
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <input
@@ -73,4 +98,17 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+Login.propTypes = {
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  loginUser: PropTypes.func.isRequired
+};
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);

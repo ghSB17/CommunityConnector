@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 import classnames from "classnames";
+import { connect } from "react-redux";
+import { registerUser } from "./../../actions/authActions";
 
 class Register extends Component {
   state = {
@@ -15,6 +18,22 @@ class Register extends Component {
     zipcode: "",
     phonenumber: "",
     errors: {}
+  };
+
+  
+  componentDidMount() {
+    if(this.props.auth.isAuthenticated){
+      this.props.history.push("/posts")
+    }
+  }
+
+
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
   };
   handleChange = event => {
     const { name, value } = event.target;
@@ -36,15 +55,7 @@ class Register extends Component {
       zipcode: this.state.zipcode,
       phonenumber: this.state.phonenumber
     };
-    console.log(newUser);
-    axios
-      .post("/api/users/register", newUser)
-      .then(regUser => console.log(regUser.data))
-      .catch(err =>
-        this.setState({
-          errors: err.response.data
-        })
-      );
+    this.props.registerUser(newUser, this.props.history);
   };
   render() {
     const { errors } = this.state;
@@ -57,6 +68,9 @@ class Register extends Component {
               <p className="lead text-center">
                 Create an account, Connect with Your Community
               </p>
+              <small className="form-text text-muted">
+                    (* = required)
+                  </small>
               <form noValidate onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <input
@@ -64,7 +78,7 @@ class Register extends Component {
                     className={classnames("form-control form-control-lg", {
                       "is-invalid": errors.name
                     })}
-                    placeholder="Name"
+                    placeholder="* Name"
                     name="name"
                     value={this.state.name}
                     onChange={this.handleChange}
@@ -79,8 +93,7 @@ class Register extends Component {
                     className={classnames("form-control form-control-lg", {
                       "is-invalid": errors.email
                     })}
-                
-                    placeholder="Email Address"
+                    placeholder="* Email Address"
                     name="email"
                     value={this.state.email}
                     onChange={this.handleChange}
@@ -100,7 +113,7 @@ class Register extends Component {
                     className={classnames("form-control form-control-lg", {
                       "is-invalid": errors.password
                     })}
-                    placeholder="Password"
+                    placeholder="* Password"
                     name="password"
                     value={this.state.password}
                     onChange={this.handleChange}
@@ -115,7 +128,7 @@ class Register extends Component {
                     className={classnames("form-control form-control-lg", {
                       "is-invalid": errors.password2
                     })}
-                    placeholder="Confirm Password"
+                    placeholder="* Confirm Password"
                     name="password2"
                     value={this.state.password2}
                     onChange={this.handleChange}
@@ -232,4 +245,18 @@ class Register extends Component {
   }
 }
 
-export default Register;
+Register.propTypes = {
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  registerUser: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register));
