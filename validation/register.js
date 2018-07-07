@@ -14,49 +14,49 @@ module.exports = function validateRegisterInput(data) {
   data.phonenumber = !isEmpty(data.phonenumber) ? data.phonenumber : "";
 
   if (Validator.isEmpty(data.name)) {
-    errors.name = "Name cannot be empty!!";
+    errors.name = "Name field is required!!";
   } else if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
     errors.name = "Name must be between 2 and 30 characters";
   }
 
   if (Validator.isEmpty(data.email)) {
-    errors.email = "Email cannot be empty!!";
+    errors.email = "Email field is required!!";
   } else if (!Validator.isEmail(data.email)) {
     errors.email = "Email is invalid";
   }
 
   if (Validator.isEmpty(data.password)) {
-    errors.password = "Password cannot be empty!!";
+    errors.password = "Password field is required!!";
   } else if (!Validator.isLength(data.password, { min: 6, max: 15 })) {
     errors.password = "Password must be between 6 and 15 characters";
   }
 
   if (Validator.isEmpty(data.password2)) {
-    errors.password2 = "Password2 cannot be empty!!";
+    errors.password2 = "Confirm Password field is required!!";
   } else if (!Validator.isLength(data.password2, { min: 6, max: 15 })) {
-    errors.password2 = "Password2 must be between 6 and 15 characters";
+    errors.password2 = "Confirm Password must be between 6 and 15 characters";
   } else if (!Validator.equals(data.password2, data.password)) {
-    errors.password2 = "Password2 must match!";
+    errors.password2 = "Confirm Password must match!";
   }
 
   if (Validator.isEmpty(data.address)) {
-    errors.address = "Address cannot be empty!!";
+    errors.address = "Address field is required!!";
   }
 
   if (Validator.isEmpty(data.city)) {
-    errors.city = "City cannot be left empty!!";
+    errors.city = "City field is required!!";
   }
 
   if (Validator.isEmpty(data.state)) {
-    errors.state = "State cannot be left empty!!";
+    errors.state = "State field is required!!";
   }
 
   if (Validator.isEmpty(data.zipcode)) {
-    errors.zipcode = "Zipcode cannot be left empty!!";
+    errors.zipcode = "Zipcode field is required!!";
   }
 
   if (Validator.isEmpty(data.phonenumber)) {
-    errors.phonenumber = "Phone Number cannot be left empty!!";
+    errors.phonenumber = "Phone Number field is required!!";
   }
 
   return {
