@@ -59,7 +59,6 @@ class News extends Component {
 
   render() {
     return (
-       
       <div>
         {" "}
         <div className="container-fluid">
@@ -80,11 +79,16 @@ class News extends Component {
                     className="list-group-item d-flex justify-content-between align-items-center"
                   >
                     <a href={article.url} target="_blank">
-                     <img className="img-thumbnail" style={{width:'60px', height:'60px'}} src={article.multimedia[0].url} alt={article.title} />
-                      {article.title} -{" "}
+                      <img
+                        className="img-thumbnail"
+                        style={{ width: "60px", height: "60px" }}
+                        src={article.multimedia[0].url}
+                        alt={article.title}
+                      /> &nbsp;&nbsp;&nbsp;&nbsp;
+                      <strong>{article.title} -{" "}
                       {moment(article.published_date).format(
                         "Do	MMMM YYYY hh:mm:ss a"
-                      )}
+                      )} </strong>
                     </a>
                     {/*<span
                       className="badge badge-primary badge-pill"
@@ -99,7 +103,6 @@ class News extends Component {
           </div>
         </div>
       </div>
-     
     );
   }
 }
