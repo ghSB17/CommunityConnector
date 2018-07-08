@@ -81,7 +81,7 @@ class News extends Component {
                     <a href={article.url} target="_blank">
                       <img
                         className="img-thumbnail"
-                        style={{ width: "60px", height: "60px" }}
+                        style={{ width: "70px", height: "70px" }}
                         src={article.multimedia.length>0 ? article.multimedia[0].url: 'http://via.placeholder.com/60x60' }
                         alt={article.title}
                       /> &nbsp;&nbsp;&nbsp;&nbsp;

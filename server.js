@@ -2,18 +2,18 @@ const express = require("express");
 const mongoose = require("mongoose");
 const users = require("./routes/api/users");
 const posts = require("./routes/api/posts");
-const nyt = require('./routes/api/nyt')
+const nyt = require("./routes/api/nyt");
 
-const bodyParser=require('body-parser')
-const passport = require('passport')
-const path = require('path')
+const bodyParser = require("body-parser");
+const passport = require("passport");
+const path = require("path");
 
-
+require("dotenv").config();
 const app = express();
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 //Database Config
-const db = require("./config/keys").MONGODB_URI;
+const db = process.env.MONGODB_URI;
 
 //Connect to Mongoose
 mongoose
@@ -25,29 +25,29 @@ mongoose
   .catch(err => console.log(err));
 
 // passport middleware
-app.use(passport.initialize())
+app.use(passport.initialize());
 
 //Passport JWT authentication strategy
-require('./config/passport')(passport)
+require("./config/passport")(passport);
 
 //Use Routes
 app.use("/api/users", users);
 app.use("/api/posts", posts);
-app.use("/api/nyt", nyt)
+app.use("/api/nyt", nyt);
 
 //serve static assets in production
-if(process.env.NODE_ENV==="production") {
-  app.use(express.static('client/build'))
-  app.get('*', (req,res)=> {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-  })
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
 }
 
 const PORT = process.env.PORT || 5000;
 
-app.get("/",(req,res)=>{
-    res.json("Hello................")
-})
+app.get("/", (req, res) => {
+  res.json("Hello................");
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on Port: ${PORT}......`);
