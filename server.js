@@ -30,9 +30,11 @@ app.use(passport.initialize());
 //Passport JWT authentication strategy
 require("./config/passport")(passport);
 
-//Use Routes
+//Use Routes for user database 
 app.use("/api/users", users);
 app.use("/api/posts", posts);
+
+//use routes to get news
 app.use("/api/nyt", nyt);
 
 //serve static assets in production
