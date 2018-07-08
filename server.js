@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const users = require("./routes/api/users");
 const posts = require("./routes/api/posts");
+const nyt = require('./routes/api/nyt')
+
 const bodyParser=require('body-parser')
 const passport = require('passport')
 const path = require('path')
@@ -31,6 +33,7 @@ require('./config/passport')(passport)
 //Use Routes
 app.use("/api/users", users);
 app.use("/api/posts", posts);
+app.use("/api/nyt", nyt)
 
 //serve static assets in production
 if(process.env.NODE_ENV==="production") {

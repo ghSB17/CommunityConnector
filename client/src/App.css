@@ -25,6 +25,15 @@ img {
   height: 100%;
 }
 
+.nytimes {
+    position: relative;
+    background: url('./img/nyt.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin-top: -24px;
+    margin-bottom: -50px;
+}
 .card-form {
   opacity: 0.9;
 }

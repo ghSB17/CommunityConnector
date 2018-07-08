@@ -13,6 +13,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Posts from "./components/posts/Posts";
 import Post from './components/post/Post'
+import News from './components/news/News'
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -47,7 +48,9 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
            
               <Route exact path="/register" component={Register} />
-            
+              <Switch>
+              <PrivateRoute exact path ="/news" component={News} />
+              </Switch>
             <Switch>
             <PrivateRoute exact path ="/posts" component={Posts} />
             </Switch>
