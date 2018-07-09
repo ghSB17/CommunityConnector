@@ -20,11 +20,18 @@ class Navbar extends Component {
             News
           </Link>
         </li>
+        <li>
+        </li>
         <li className="nav-item">
           <Link className="nav-link" to="/posts">
             Post Feed
           </Link>
         </li>
+        <li className="nav-item">
+        <Link className="nav-link" to="/board">
+          Bulletin Board
+        </Link>
+      </li>
         <li className="nav-item">
           <a href="" onClick={this.props.logoutUser} className="nav-link">
             <img

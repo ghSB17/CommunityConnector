@@ -14,6 +14,7 @@ import Register from "./components/auth/Register";
 import Posts from "./components/posts/Posts";
 import Post from './components/post/Post'
 import News from './components/news/News'
+import Board from './components/board/bindex'
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -56,6 +57,9 @@ class App extends Component {
             </Switch>
             <Switch>
             <PrivateRoute exact path='/post/:id' component={Post}/>
+            </Switch>
+            <Switch>
+            <PrivateRoute exact path ="/board" component={Board} />
             </Switch>
             </div>
             <Footer />
