@@ -32,6 +32,11 @@ class Navbar extends Component {
           Bulletin Board
         </Link>
       </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/profile">
+          Profile
+        </Link>
+      </li>
         <li className="nav-item">
           <a href="" onClick={this.props.logoutUser} className="nav-link">
             <img

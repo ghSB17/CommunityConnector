@@ -1,13 +1,13 @@
 const Validator = require("validator");
 const isEmpty = require("./is-empty");
 
-module.exports = function validateDashboardInput(data) {
+module.exports = function validateProfileInput(data) {
   let errors = {};
   data.name = !isEmpty(data.name) ? data.name : "";
   data.email = !isEmpty(data.email) ? data.email : "";
-  data.password = !isEmpty(data.password) ? data.password : "";
+  // data.password = !isEmpty(data.password) ? data.password : "";
 //   data.password2 = !isEmpty(data.password2) ? data.password2 : "";
-//   data.address = !isEmpty(data.address) ? data.address : "";
+  data.address = !isEmpty(data.address) ? data.address : "";
   data.city = !isEmpty(data.city) ? data.city : "";
   data.state = !isEmpty(data.state) ? data.state : "";
   data.zipcode = !isEmpty(data.zipcode) ? data.zipcode : "";
@@ -64,3 +64,4 @@ module.exports = function validateDashboardInput(data) {
     isValid: isEmpty(errors)
   };
 };
+  

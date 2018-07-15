@@ -46,3 +46,7 @@ img {
 .form-control::placeholder {
   color: #bbb !important;
 }
+
+.pwdTxt {
+  color: red
+}

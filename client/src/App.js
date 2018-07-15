@@ -15,6 +15,8 @@ import Posts from "./components/posts/Posts";
 import Post from './components/post/Post'
 import News from './components/news/News'
 import Board from './components/board/bindex'
+import EditProfile from './components/auth/EditProfile'
+import Password from './components/auth/Password'
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -60,6 +62,12 @@ class App extends Component {
             </Switch>
             <Switch>
             <PrivateRoute exact path ="/board" component={Board} />
+            </Switch>
+            <Switch>
+            <PrivateRoute exact path ="/profile" component={EditProfile} />
+            </Switch>
+            <Switch>
+            <PrivateRoute exact path ="/password/:token" component={Password} />
             </Switch>
             </div>
             <Footer />

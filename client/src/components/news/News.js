@@ -82,12 +82,12 @@ class News extends Component {
                       <img
                         className="img-thumbnail"
                         style={{ width: "70px", height: "70px" }}
-                        src={article.multimedia.length>0 ? article.multimedia[0].url: 'http://via.placeholder.com/60x60' }
+                        src={article.multimedia.length>0 ? article.multimedia[0].url: 'https://via.placeholder.com/60x60' }
                         alt={article.title}
                       /> &nbsp;&nbsp;&nbsp;&nbsp;
                       <strong>{article.title} -{" "}
-                      {moment(article.published_date).format(
-                        "Do	MMMM YYYY hh:mm:ss a"
+                      {moment(article.updated_date).format(
+                        "Do	MMMM YYYY"
                       )} </strong>
                     </a>
                     {/*<span
